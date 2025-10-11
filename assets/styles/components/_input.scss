@@ -1,0 +1,19 @@
+.as-input {
+    font-family: inherit;
+
+    border: 1px solid var(--color-grey-300);
+    outline: none;
+    padding: 0 8px;
+
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-grey-900);
+
+    &:active, &:focus {
+        border-color: var(--color-ascella-blue);
+    }
+
+    &::placeholder {
+        color: var(--color-grey-300);
+    }
+}

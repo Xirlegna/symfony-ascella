@@ -1,0 +1,9 @@
+@for $i from 1 through 6 {
+  .as-w-#{$i} {
+    width: calc($i * 4px);
+  }
+}
+
+.as-w-full {
+  width: 100vw;
+}

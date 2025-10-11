@@ -1,0 +1,59 @@
+<div {{ attributes }} style="display: grid; grid-template-columns: min-content 1fr;">
+	<div class="as-p-6">
+		<div class="as-d-flex as-justify-content-space-between as-align-items-center as-mb-4">
+			<button {{ live_action('prevMonth') }} type="button" class="as-btn as-d-flex as-align-items-center as-justify-content-center">
+				<img src="{{ asset('images/arrow-left.svg') }}" alt="Left"/>
+			</button>
+			<p class="as-text-primary-accent">{{ this.header }}</p>
+			<button {{ live_action('nextMonth') }} type="button" class="as-btn as-d-flex as-align-items-center as-justify-content-center">
+				<img src="{{ asset('images/arrow-right.svg') }}" alt="Right"/>
+			</button>
+		</div>
+
+		<table class="as-calendar">
+			<thead class="as-mb-1">
+				<tr>
+					<th class="as-text-body">Mon</th>
+					<th class="as-text-body">Tue</th>
+					<th class="as-text-body">Wed</th>
+					<th class="as-text-body">Thu</th>
+					<th class="as-text-body">Fri</th>
+					<th class="as-text-body">Sat</th>
+					<th class="as-text-body">Sun</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for week in this.calendar %}
+					<tr>
+						{% for day in week %}
+							<td>
+								{% if day.type == 'default' %}
+									<button {{ live_action('selectDay', { day: day.value } ) }} type="button">{{ day.value }}</button>
+								{% elseif day.type == 'active' %}
+									<button {{ live_action('selectDay', { day: day.value } ) }} type="button" class="active">{{ day.value }}</button>
+								{% endif %}
+							</td>
+						{% endfor %}
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="as-p-6 as-d-flex as-flex-direction-column as-gap-5">
+		<h6 class="as-text-body-strong">Today:</h6>
+		<div class="as-d-flex as-flex-direction-column as-gap-4">
+			<twig:Appointment from="08:30" to="09:30" type="empty"/>
+			<twig:Appointment from="09:45" to="10:45" type="booked" title="Introduction" name="Norbert Podobni"/>
+			<twig:Appointment from="11:00" to="12:00" type="empty"/>
+		</div>
+
+		<h6 class="as-text-body-strong">October 7:</h6>
+		<div class="as-d-flex as-flex-direction-column as-gap-4">
+			<twig:Appointment from="08:30" to="09:30" type="empty"/>
+			<twig:Appointment from="09:45" to="10:45" type="booked" title="Introduction" name="Norbert Podobni"/>
+			<twig:Appointment from="11:00" to="12:00" type="empty"/>
+		</div>
+	</div>
+</div>

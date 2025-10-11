@@ -1,0 +1,17 @@
+.ascella-dashboard {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    grid-template-rows: 62px 1fr;
+    grid-template-areas:
+        "sidebar header"
+        "sidebar main";
+    height: 100vh;
+    background-color: var(--color-grey-200);
+}
+
+/* ==== MAIN CONTENT ==== */
+.main {
+    grid-area: main;
+    padding: 24px;
+    gap: 24px;
+}

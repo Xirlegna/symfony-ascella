@@ -1,0 +1,15 @@
+<div class="appointment">
+	<div class="as-d-flex as-flex-direction-column">
+		<p class="as-text-primary-accent">{{ from }}</p>
+		<p class="as-text-body">{{ to }}</p>
+	</div>
+
+	<div class="{{ class }}"></div>
+
+	<div>
+        {% if type == 'booked' %}
+            <p class="as-text-body">{{ title }}</p>
+		    <p class="as-text-body-strong">{{ name }}</p>
+        {% endif %}
+    </div>
+</div>

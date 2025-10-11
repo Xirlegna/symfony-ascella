@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calendar
+{% endblock %}
+
+{% block body %}
+	<section class="as-d-flex as-justify-content-center as-align-items-center as-h-full as-w-full as-bg-grey-200">
+		<div class="as-d-flex as-flex-direction-column as-bg-white as-pt-6 as-pr-4 as-pb-6 as-pl-4 rounded-8 as-gap-5 as-shadow-sm" style="width: 320px;">
+			<h2 class="as-d-flex as-justify-content-center as-align-items-center as-gap-4 text-4xl as-text-grey-900">
+				<img src="{{ asset('images/brand-icon.svg') }}" alt="Ascella"/>
+				<span>Ascella</span>
+			</h2>
+
+			<div class="as-d-flex as-flex-direction-column as-align-items-center">
+				<p class="text-3xl">Welcome back</p>
+				<p class="font-size">Sign in to yout account</p>
+			</div>
+
+			<div class="as-d-flex as-flex-direction-column as-gap-3">
+				<twig:TextInput id="username" label="Email address" placeholder="test@test.com"/>
+				<twig:TextInput id="password" label="Password" type="password"/>
+			</div>
+
+			<twig:Button variant="primary">Sign in</twig:Button>
+		</div>
+	</section>
+{% endblock %}

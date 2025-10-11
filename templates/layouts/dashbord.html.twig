@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ascella
+{% endblock %}
+
+{% block body %}
+	<div class="ascella-dashboard">
+		<aside class="ascella-sidebar">
+			<h2 class="as-d-flex as-justify-content-center as-align-items-center as-gap-4 text-4xl as-text-white as-h-16">
+				<img src="{{ asset('images/brand-icon.svg') }}" alt="Ascella"/>
+				<span>Ascella</span>
+			</h2>
+
+			<nav class="as-pt-6 as-pr-4 as-pb-6 as-pl-4">
+				<ul class="as-d-flex as-flex-direction-column as-gap-4">
+					<li class="rounded-4 as-bg-ascella-blue">Calendar</li>
+					<li class="rounded-4">Users</li>
+				</ul>
+			</nav>
+		</aside>
+
+		<header class="ascella-header">
+			<h1>Dashboard</h1>
+			<div class="user-avatar"></div>
+		</header>
+
+		<main class="main">
+			<section class="as-bg-white rounded-8 as-shadow-sm overflow-hidden">
+				<twig:Ascella:BookingSystem/>
+			</section>
+		</main>
+	</div>
+{% endblock %}

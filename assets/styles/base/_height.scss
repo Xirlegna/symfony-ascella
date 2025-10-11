@@ -1,0 +1,13 @@
+@for $i from 1 through 20 {
+  .as-h-#{$i} {
+    height: calc($i * 4px);
+  }
+}
+
+.as-h-100 {
+  height: 100%
+}
+
+.as-h-full {
+  height: 100vh;
+}

@@ -1,0 +1,21 @@
+@for $i from 1 through 6 {
+  .as-p-#{$i} {
+    padding: calc($i * 4px);
+  }
+
+  .as-pt-#{$i} {
+    padding-top: calc($i * 4px);
+  }
+
+  .as-pr-#{$i} {
+    padding-right: calc($i * 4px);
+  }
+
+  .as-pb-#{$i} {
+    padding-bottom: calc($i * 4px);
+  }
+
+  .as-pl-#{$i} {
+    padding-left: calc($i * 4px);
+  }
+}

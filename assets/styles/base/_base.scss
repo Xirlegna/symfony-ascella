@@ -1,0 +1,17 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+html {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+}

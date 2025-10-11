@@ -1,0 +1,21 @@
+@for $i from 1 through 6 {
+  .as-m-#{$i} {
+    margin: calc($i * 4px);
+  }
+
+  .as-mt-#{$i} {
+    margin-top: calc($i * 4px);
+  }
+
+  .as-mr-#{$i} {
+    margin-right: calc($i * 4px);
+  }
+
+  .as-mb-#{$i} {
+    margin-bottom: calc($i * 4px);
+  }
+
+  .as-ml-#{$i} {
+    margin-left: calc($i * 4px);
+  }
+}
