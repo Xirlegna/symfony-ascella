@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Twig\Components;
+namespace App\Twig\Components\Ascella;
 
 use Symfony\UX\TwigComponent\Attribute\PostMount;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
-#[AsTwigComponent]
+#[AsTwigComponent(template: 'ascella/components/Appointment.html.twig')]
 class Appointment
 {
     public string $from;

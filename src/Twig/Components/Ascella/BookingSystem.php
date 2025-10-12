@@ -8,7 +8,7 @@ use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
-#[AsLiveComponent(template: 'components/BookingSystem/BookingSystem.html.twig')]
+#[AsLiveComponent(template: 'ascella/components/BookingSystem/BookingSystem.html.twig')]
 class BookingSystem
 {
     use DefaultActionTrait;

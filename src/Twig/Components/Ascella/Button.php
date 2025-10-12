@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Twig\Components;
+namespace App\Twig\Components\Ascella;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\UX\TwigComponent\Attribute\PreMount;
 use Symfony\UX\TwigComponent\Attribute\PostMount;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
-#[AsTwigComponent]
+#[AsTwigComponent(template: 'ascella/components/Button.html.twig')]
 class Button
 {
     public string $class;

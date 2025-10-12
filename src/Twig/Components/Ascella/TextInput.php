@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Twig\Components;
+namespace App\Twig\Components\Ascella;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\UX\TwigComponent\Attribute\PreMount;
-use Symfony\UX\TwigComponent\Attribute\PostMount;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
-#[AsTwigComponent]
+#[AsTwigComponent(template: 'ascella/components/TextInput.html.twig')]
 class TextInput
 {
     public string $id;
