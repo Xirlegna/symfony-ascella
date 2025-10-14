@@ -2,11 +2,15 @@
 
 namespace App\Twig\Components\Ascella;
 
-use Symfony\UX\LiveComponent\Attribute\LiveAction;
+use DateTime;
+use App\Entity\Appointment;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\AppointmentRepository;
 use Symfony\UX\LiveComponent\Attribute\LiveArg;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
-use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
+use Symfony\UX\LiveComponent\Attribute\LiveAction;
+use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 
 #[AsLiveComponent(template: 'ascella/components/BookingSystem/BookingSystem.html.twig')]
 class BookingSystem
@@ -33,12 +37,50 @@ class BookingSystem
     #[LiveProp(writable: true)]
     public string $selectedDate;
 
-    public function __construct()
+    #[LiveProp(writable: true)]
+    public string $start = '';
+
+    #[LiveProp(writable: true)]
+    public string $end = '';
+
+    public function __construct(private EntityManagerInterface $entityManager, private AppointmentRepository $appointmentRepository)
     {
         $now = time();
 
         $this->now = $now;
         $this->selectDate($now);
+    }
+
+    public function getAppointments(): array
+    {
+        $startDateTime = new DateTime(sprintf(
+            '%u-%02d-%02d %s',
+            $this->selectedYear,
+            $this->selectedMonth,
+            $this->selectedDay,
+            '00:00'
+        ));
+
+        $endDateTime = new DateTime(sprintf(
+            '%u-%02d-%02d %s',
+            $this->selectedYear,
+            $this->selectedMonth,
+            $this->selectedDay,
+            '23:59'
+        ));
+
+        $appointments = [];
+        $appointmentObjs = $this->appointmentRepository->findByQuery($startDateTime, $endDateTime);
+
+        foreach ($appointmentObjs as $key => $value) {
+            array_push($appointments, [
+                'startTime' => $value->getStartTime()->format('H:i'),
+                'endTime' => $value->getEndTime()->format('H:i'),
+                'isBooked' => $value->isBooked(),
+            ]);
+        }
+
+        return $appointments;
     }
 
     public function getHeader()
@@ -119,7 +161,39 @@ class BookingSystem
         $this->selectDate(strtotime($date));
     }
 
-    private function selectDate($date) {
+    #[LiveAction]
+    public function addAppointment()
+    {
+        $startDateTime = new DateTime(sprintf(
+            '%u-%02d-%02d %s',
+            $this->selectedYear,
+            $this->selectedMonth,
+            $this->selectedDay,
+            $this->start
+        ));
+
+        $endDateTime = new DateTime(sprintf(
+            '%u-%02d-%02d %s',
+            $this->selectedYear,
+            $this->selectedMonth,
+            $this->selectedDay,
+            $this->end
+        ));
+
+        $appointment = new Appointment();
+        $appointment->setStartTime($startDateTime);
+        $appointment->setEndTime($endDateTime);
+        $appointment->setIsBooked(false);
+
+        $this->entityManager->persist($appointment);
+        $this->entityManager->flush();
+
+        $this->start = '';
+        $this->end = '';
+    }
+
+    private function selectDate($date)
+    {
         $this->selectedDay = (int) date('d', $date);
         $this->selectedMonth = (int) date('n', $date);
         $this->selectedMonthName = date('F', $date);

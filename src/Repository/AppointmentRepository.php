@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use DateTime;
 use App\Entity\Appointment;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Appointment>
@@ -14,6 +15,17 @@ class AppointmentRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Appointment::class);
+    }
+
+    public function findByQuery(DateTime $start, DateTime $end): array
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.start_time >= :start')
+            ->andWhere('a.start_time <= :end')
+            ->setParameter('start', $start)
+            ->setParameter('end', $end)
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**

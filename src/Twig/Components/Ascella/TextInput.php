@@ -13,6 +13,7 @@ class TextInput
     public string $type;
     public string $label;
     public string $placeholder;
+    public string $model;
 
     #[PreMount]
     public function preMount(array $data): array
@@ -30,6 +31,9 @@ class TextInput
 
         $resolver->setDefaults(['placeholder' => '']);
         $resolver->setAllowedTypes('placeholder', 'string');
+
+        $resolver->setDefaults(['model' => '']);
+        $resolver->setAllowedTypes('model', 'string');
 
         return $resolver->resolve($data) + $data;
     }

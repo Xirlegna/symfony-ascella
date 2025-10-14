@@ -39,21 +39,24 @@
 				{% endfor %}
 			</tbody>
 		</table>
+
+		<div class="as-d-flex as-flex-direction-column as-gap-3">
+			<twig:Ascella:TextInput id="start" label="Start" placeholder="10:00" model="start"/>
+			<twig:Ascella:TextInput id="end" label="End" placeholder="11:00" model="end"/>
+			<twig:Ascella:Button variant="primary" action="live#action" actionParam="addAppointment">Add</twig:Ascella:Button>
+		</div>
 	</div>
 
 	<div class="as-p-6 as-d-flex as-flex-direction-column as-gap-5">
 		<h6 class="as-text-body-strong">Today:</h6>
 		<div class="as-d-flex as-flex-direction-column as-gap-4">
-			<twig:Ascella:Appointment from="08:30" to="09:30" type="empty"/>
-			<twig:Ascella:Appointment from="09:45" to="10:45" type="booked" title="Introduction" name="Norbert Podobni"/>
-			<twig:Ascella:Appointment from="11:00" to="12:00" type="empty"/>
-		</div>
-
-		<h6 class="as-text-body-strong">October 7:</h6>
-		<div class="as-d-flex as-flex-direction-column as-gap-4">
-			<twig:Ascella:Appointment from="08:30" to="09:30" type="empty"/>
-			<twig:Ascella:Appointment from="09:45" to="10:45" type="booked" title="Introduction" name="Norbert Podobni"/>
-			<twig:Ascella:Appointment from="11:00" to="12:00" type="empty"/>
+			{% for appointment in this.appointments %}
+				<twig:Ascella:Appointment
+					from="{{ appointment.startTime }}"
+					to="{{ appointment.endTime }}"
+					type="{{ appointment.isBooked ? 'booked' : 'empty' }}"
+				/>
+			{% endfor %}
 		</div>
 	</div>
 </div>

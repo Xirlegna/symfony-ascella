@@ -13,6 +13,8 @@ class Button
     public string $class;
     public string $type;
     public string $variant;
+    public string $action;
+    public string $actionParam;
 
     private array $classes = [
         'base' => [
@@ -46,6 +48,12 @@ class Button
 
         $resolver->setDefaults(['variant' => 'primary']);
         $resolver->setAllowedValues('variant', ['primary', 'primary-outline']);
+
+        $resolver->setDefaults(['action' => '']);
+        $resolver->setAllowedTypes('action', 'string');
+
+        $resolver->setDefaults(['actionParam' => '']);
+        $resolver->setAllowedTypes('actionParam', 'string');
 
         return $resolver->resolve($data) + $data;
     }

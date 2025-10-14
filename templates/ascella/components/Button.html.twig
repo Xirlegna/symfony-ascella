@@ -1,3 +1,8 @@
-<button type="{{ type }}" class="{{ class }}">
+<button
+	type="{{ type }}"
+	class="{{ class }}"
+	data-action="{{ action }}"
+    data-live-action-param="{{ actionParam }}"
+>
 	{% block content %}{% endblock %}
 </button>
