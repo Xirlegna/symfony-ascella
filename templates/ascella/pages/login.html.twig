@@ -5,7 +5,12 @@
 
 {% block body %}
 	<section class="as-d-flex as-justify-content-center as-align-items-center as-h-full as-w-full as-bg-grey-200">
-		<div class="as-d-flex as-flex-direction-column as-bg-white as-pt-6 as-pr-4 as-pb-6 as-pl-4 rounded-8 as-gap-5 as-shadow-sm" style="width: 320px;">
+		<form
+			class="as-d-flex as-flex-direction-column as-bg-white as-pt-6 as-pr-4 as-pb-6 as-pl-4 rounded-8 as-gap-5 as-shadow-sm"
+			style="width: 320px;"
+			action="{{ path('app_login') }}"
+            method="POST"
+		>
 			<h2 class="as-d-flex as-justify-content-center as-align-items-center as-gap-4 text-4xl as-text-grey-900">
 				<img src="{{ asset('images/brand-icon.svg') }}" alt="Ascella"/>
 				<span>Ascella</span>
@@ -17,11 +22,25 @@
 			</div>
 
 			<div class="as-d-flex as-flex-direction-column as-gap-3">
-				<twig:Ascella:TextInput id="username" label="Email address" placeholder="test@test.com"/>
-				<twig:Ascella:TextInput id="password" label="Password" type="password"/>
+				<twig:Ascella:TextInput
+					id="_username"
+					label="Email address"
+					placeholder="test@test.com"
+				/>
+				<twig:Ascella:TextInput
+					id="_password"
+					label="Password"
+					type="password"
+				/>
 			</div>
 
+			<input type="hidden" name="_target_path" value="/admin" />
+
+			{% if error %}
+                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
 			<twig:Ascella:Button variant="primary">Sign in</twig:Ascella:Button>
-		</div> 
+		</form> 
 	</section>
 {% endblock %}
