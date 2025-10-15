@@ -74,6 +74,7 @@ class BookingSystem
 
         foreach ($appointmentObjs as $key => $value) {
             array_push($appointments, [
+                'id' => $value->getId(),
                 'startTime' => $value->getStartTime()->format('H:i'),
                 'endTime' => $value->getEndTime()->format('H:i'),
                 'isBooked' => $value->isBooked(),
@@ -85,7 +86,7 @@ class BookingSystem
 
     public function getHeader()
     {
-        return $this->selectedYear . '. ' . $this->selectedMonthName;
+        return "{$this->selectedYear}. {$this->selectedMonthName}";
     }
 
     public function getCalendar()
@@ -190,6 +191,15 @@ class BookingSystem
 
         $this->start = '';
         $this->end = '';
+    }
+
+    #[LiveAction]
+    public function deleteAppointment(#[LiveArg] int $id)
+    {
+        $appointment = $this->appointmentRepository->find($id);
+
+        $this->entityManager->remove($appointment);
+        $this->entityManager->flush();
     }
 
     private function selectDate($date)

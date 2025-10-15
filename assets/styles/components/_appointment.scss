@@ -1,6 +1,6 @@
 .appointment {
   display: grid;
-  grid-template-columns: 52px min-content 1fr;
+  grid-template-columns: 52px min-content 1fr min-content;
   align-items: center;
   gap: 16px;
 }

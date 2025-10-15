@@ -8,6 +8,7 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 #[AsTwigComponent(template: 'ascella/components/Appointment.html.twig')]
 class Appointment
 {
+    public string $id;
     public string $from;
     public string $to;
     public string $type = 'empty';

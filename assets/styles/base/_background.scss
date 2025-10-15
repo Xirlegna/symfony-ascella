@@ -34,7 +34,7 @@
   background: var(--color-grey-500);
 }
 
-.hover\:as-bg-grey-500:hover {
+as-bg-grey-500:hover {
   background: var(--color-grey-500);
 }
 
@@ -42,6 +42,22 @@
   background: var(--color-success);
 }
 
+.hover\:as-bg-success:hover {
+  background: var(--color-success-hover);
+}
+
 .as-bg-warning {
   background: var(--color-warning);
+}
+
+.hover\:as-bg-warning:hover {
+  background: var(--color-warning-hover);
+}
+
+.as-bg-error {
+  background: var(--color-error);
+}
+
+.hover\:as-bg-error:hover {
+  background: var(--color-error-hover);
 }

@@ -1,11 +1,11 @@
 <div {{ attributes }} style="display: grid; grid-template-columns: min-content 1fr;">
 	<div class="as-p-6">
 		<div class="as-d-flex as-justify-content-space-between as-align-items-center as-mb-4">
-			<button {{ live_action('prevMonth') }} type="button" class="as-btn as-d-flex as-align-items-center as-justify-content-center">
+			<button {{ live_action('prevMonth') }} type="button" class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-w-7 as-h-7 rounded-full as-border-none as-bg-ascella-blue hover:as-bg-accent-cyan">
 				<img src="{{ asset('images/arrow-left.svg') }}" alt="Left"/>
 			</button>
 			<p class="as-text-primary-accent">{{ this.header }}</p>
-			<button {{ live_action('nextMonth') }} type="button" class="as-btn as-d-flex as-align-items-center as-justify-content-center">
+			<button {{ live_action('nextMonth') }} type="button" class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-w-7 as-h-7 rounded-full as-border-none as-bg-ascella-blue hover:as-bg-accent-cyan">
 				<img src="{{ asset('images/arrow-right.svg') }}" alt="Right"/>
 			</button>
 		</div>
@@ -52,6 +52,7 @@
 		<div class="as-d-flex as-flex-direction-column as-gap-4">
 			{% for appointment in this.appointments %}
 				<twig:Ascella:Appointment
+					id="{{ appointment.id }}"
 					from="{{ appointment.startTime }}"
 					to="{{ appointment.endTime }}"
 					type="{{ appointment.isBooked ? 'booked' : 'empty' }}"

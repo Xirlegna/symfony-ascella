@@ -1,4 +1,4 @@
-@for $i from 1 through 6 {
+@for $i from 1 through 20 {
   .as-w-#{$i} {
     width: calc($i * 4px);
   }

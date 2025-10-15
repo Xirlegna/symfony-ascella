@@ -24,6 +24,7 @@ class AppointmentRepository extends ServiceEntityRepository
             ->andWhere('a.start_time <= :end')
             ->setParameter('start', $start)
             ->setParameter('end', $end)
+            ->orderBy('a.start_time', 'ASC')
             ->getQuery()
             ->getResult();
     }

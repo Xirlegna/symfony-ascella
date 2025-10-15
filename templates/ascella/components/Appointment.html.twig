@@ -12,4 +12,14 @@
 		    <p class="as-text-body-strong">{{ name }}</p>
         {% endif %}
     </div>
+
+	<div>
+		<button
+			{{ live_action('deleteAppointment', { id: id } ) }}
+			type="button"
+			class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-w-7 as-h-7 rounded-full as-border-none as-bg-error hover:as-bg-error"
+		>
+			<img src="{{ asset('images/cross.svg') }}" alt="Left"/>
+		</button>
+	</div>
 </div>
