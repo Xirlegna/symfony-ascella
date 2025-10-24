@@ -43,6 +43,12 @@ class BookingSystem
     #[LiveProp(writable: true)]
     public string $end = '';
 
+    #[LiveProp(writable: true)]
+    public int $selectedAppointmentId = -1;
+
+    #[LiveProp(writable: true)]
+    public int $deletedAppointmentId = -1;
+
     public function __construct(private EntityManagerInterface $entityManager, private AppointmentRepository $appointmentRepository)
     {
         $now = time();
@@ -78,10 +84,28 @@ class BookingSystem
                 'startTime' => $value->getStartTime()->format('H:i'),
                 'endTime' => $value->getEndTime()->format('H:i'),
                 'isBooked' => $value->isBooked(),
+                'name' => $value->getName() ? $value->getName() : ''
             ]);
         }
 
         return $appointments;
+    }
+
+    public function getAppointment(): array
+    {
+        if ($this->selectedAppointmentId < 0) {
+            return [];
+        }
+
+        $appointment = $this->appointmentRepository->find($this->selectedAppointmentId);
+
+        return [
+            'name' => $appointment->getName(),
+            'email' => $appointment->getEmail(),
+            'phone' => $appointment->getPhone(),
+            'start' => $appointment->getStartTime()->format('Y-m-d H:i'),
+            'end' => $appointment->getEndTime()->format('Y-m-d H:i')
+        ];
     }
 
     public function getHeader()
@@ -194,12 +218,32 @@ class BookingSystem
     }
 
     #[LiveAction]
-    public function deleteAppointment(#[LiveArg] int $id)
+    public function openDeleteAppointmentModal(#[LiveArg] int $id)
     {
-        $appointment = $this->appointmentRepository->find($id);
+        $this->deletedAppointmentId = $id;
+    }
+
+    #[LiveAction]
+    public function closeDeleteAppointmentModal()
+    {
+        $this->deletedAppointmentId = -1;
+    }
+
+    #[LiveAction]
+    public function deleteAppointment()
+    {
+        $appointment = $this->appointmentRepository->find($this->deletedAppointmentId);
 
         $this->entityManager->remove($appointment);
         $this->entityManager->flush();
+
+        $this->deletedAppointmentId = -1;
+    }
+
+    #[LiveAction]
+    public function viewAppointment(#[LiveArg] int $id)
+    {
+        $this->selectedAppointmentId = $id;
     }
 
     private function selectDate($date)

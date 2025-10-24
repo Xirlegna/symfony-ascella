@@ -1,8 +1,15 @@
 <button
 	type="{{ type }}"
-	class="{{ class }}"
-	data-action="{{ action }}"
-    data-live-action-param="{{ actionParam }}"
+	class="{{ btnClass }}"
+	{% if action != '' %}
+		data-action="{{ action }}"
+	{% endif %}
+	{% if actionParam != '' %}
+    	data-live-action-param="{{ actionParam }}"
+	{% endif %}
+	{% if liveAction != '' %}
+    	{{ live_action(liveAction) }}
+	{% endif %}
 >
 	{% block content %}{% endblock %}
 </button>

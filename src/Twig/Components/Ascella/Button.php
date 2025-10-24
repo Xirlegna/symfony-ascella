@@ -10,11 +10,13 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 #[AsTwigComponent(template: 'ascella/components/Button.html.twig')]
 class Button
 {
-    public string $class;
+    public array $class;
+    public string $btnClass;
     public string $type;
     public string $variant;
     public string $action;
     public string $actionParam;
+    public string $liveAction;
 
     private array $classes = [
         'base' => [
@@ -35,6 +37,11 @@ class Button
             'as-border-solid',
             'as-border-ascella-blue',
             'hover:as-bg-grey-200'
+        ],
+        'error' => [
+            'as-bg-error',
+            'as-text-white',
+            'hover:as-bg-error'
         ]
     ];
 
@@ -43,11 +50,14 @@ class Button
     {
         $resolver = new OptionsResolver();
 
+        $resolver->setDefaults(['class' => []]);
+        $resolver->setAllowedTypes('class', 'array');
+
         $resolver->setDefaults(['type' => 'submit']);
         $resolver->setAllowedValues('type', ['submit', 'button']);
 
         $resolver->setDefaults(['variant' => 'primary']);
-        $resolver->setAllowedValues('variant', ['primary', 'primary-outline']);
+        $resolver->setAllowedValues('variant', ['primary', 'primary-outline', 'error']);
 
         $resolver->setDefaults(['action' => '']);
         $resolver->setAllowedTypes('action', 'string');
@@ -55,15 +65,18 @@ class Button
         $resolver->setDefaults(['actionParam' => '']);
         $resolver->setAllowedTypes('actionParam', 'string');
 
+        $resolver->setDefaults(['liveAction' => '']);
+        $resolver->setAllowedTypes('liveAction', 'string');
+
         return $resolver->resolve($data) + $data;
     }
 
     #[PostMount]
     public function postMount(array $data): array
     {
-        $classes = array_merge($this->classes['base'], $this->classes[$this->variant]);
+        $classes = array_merge($this->classes['base'], $this->classes[$this->variant], $this->class);
 
-        $this->class = implode(' ', $classes);
+        $this->btnClass = implode(' ', $classes);
 
         return $data;
     }

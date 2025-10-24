@@ -13,13 +13,20 @@
         {% endif %}
     </div>
 
-	<div>
+	<div class="as-d-flex as-gap-2">
 		<button
-			{{ live_action('deleteAppointment', { id: id } ) }}
+			{{ live_action('viewAppointment', { id: id } ) }}
+			type="button"
+			class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-w-7 as-h-7 rounded-full as-border-none as-bg-ascella-blue hover:as-bg-accent-cyan"
+		>
+			<img src="{{ asset('images/three-dots.svg') }}" alt="View"/>
+		</button>
+		<button
+			{{ live_action('openDeleteAppointmentModal', { id: id } ) }}
 			type="button"
 			class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-w-7 as-h-7 rounded-full as-border-none as-bg-error hover:as-bg-error"
 		>
-			<img src="{{ asset('images/cross.svg') }}" alt="Left"/>
+			<img src="{{ asset('images/cross.svg') }}" alt="Delete"/>
 		</button>
 	</div>
 </div>

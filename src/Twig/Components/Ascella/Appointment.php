@@ -12,7 +12,8 @@ class Appointment
     public string $from;
     public string $to;
     public string $type = 'empty';
-    public string $title = '';
+
+    public string $title = 'Coaching';
     public string $name = '';
     public string $class = 'as-w-1 as-h-100 rounded-2';
 

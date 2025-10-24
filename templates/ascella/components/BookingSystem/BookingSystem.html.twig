@@ -1,5 +1,5 @@
-<div {{ attributes }} style="display: grid; grid-template-columns: min-content 1fr;">
-	<div class="as-p-6">
+<div {{ attributes }} style="display: grid; grid-template-columns: min-content 1fr 1fr;">
+	<div class="as-p-6 as-bg-grey-200">
 		<div class="as-d-flex as-justify-content-space-between as-align-items-center as-mb-4">
 			<button {{ live_action('prevMonth') }} type="button" class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-w-7 as-h-7 rounded-full as-border-none as-bg-ascella-blue hover:as-bg-accent-cyan">
 				<img src="{{ asset('images/arrow-left.svg') }}" alt="Left"/>
@@ -56,8 +56,83 @@
 					from="{{ appointment.startTime }}"
 					to="{{ appointment.endTime }}"
 					type="{{ appointment.isBooked ? 'booked' : 'empty' }}"
+					name="{{ appointment.name }}"
 				/>
 			{% endfor %}
 		</div>
 	</div>
+
+	<div class="as-p-6 as-bg-grey-200">
+		{% if this.appointment %}
+			<p class="as-text-body">Name: {{ this.appointment.name }}</p>
+			<p class="as-text-body">Email: {{ this.appointment.email }}</p>
+			<p class="as-text-body">Phone: {{ this.appointment.phone }}</p>
+			<p class="as-text-body">Start: {{ this.appointment.start }}</p>
+			<p class="as-text-body">End: {{ this.appointment.end }}</p>
+		{% endif %}
+
+		<div class="as-d-flex">
+			<div class="as-d-flex as-flex-direction-column">
+				<button class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-bg-ascella-blue as-border-none rounded-t-sm as-w-9 as-h-7">
+					<img src="{{ asset('images/plus.svg') }}" alt="Plus"/>
+				</button>
+				<input
+					type="number"
+					min="0"
+					max="23"
+					value=00
+					class="as-outline-none as-w-9 as-h-9 rounded-none as-border-solid as-border-1 as-border-grey-300 as-text-center"
+				/>
+				<button class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-bg-ascella-blue as-border-none rounded-b-sm as-w-9 as-h-7">
+					<img src="{{ asset('images/minus.svg') }}" alt="Minus"/>
+				</button>
+			</div>
+			<div class="as-d-flex as-flex-direction-column">
+				<button class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-bg-ascella-blue as-border-none rounded-t-sm as-w-9 as-h-7">
+					<img src="{{ asset('images/plus.svg') }}" alt="Plus"/>
+				</button>
+				<input
+					type="number"
+					min="0"
+					max="23"
+					value=00
+					class="as-outline-none as-w-9 as-h-9 rounded-none as-border-solid as-border-1 as-border-grey-300 as-text-center"
+				/>
+				<button class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-bg-ascella-blue as-border-none rounded-b-sm as-w-9 as-h-7">
+					<img src="{{ asset('images/minus.svg') }}" alt="Minus"/>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	{% if deletedAppointmentId >= 0 %}
+		<div class="as-backdrop as-absolute as-top-0 as-left-0 as-d-flex as-align-items-center as-justify-content-center as-h-full as-w-full">
+			<div
+				class="as-d-flex as-flex-direction-column as-bg-white as-pt-6 as-pr-4 as-pb-6 as-pl-4 rounded-8 as-gap-5 as-shadow-sm"
+				style="width: 320px;"
+			>
+				<div class="as-d-flex as-flex-direction-column">
+					<p class="text-3xl">Delete Appointment</p>
+					<p class="font-size">Are you sure you want to delete this appointment?</p>
+				</div>
+
+				<div class="as-d-flex as-gap-3 as-mt-5">
+					<twig:Ascella:Button
+						liveAction="closeDeleteAppointmentModal"
+						variant="primary-outline"
+						class="{{ ['as-flex-grow-1'] }}"
+					>
+						Cancel
+					</twig:Ascella:Button>
+					<twig:Ascella:Button
+						liveAction="deleteAppointment"
+						variant="error"
+						class="{{ ['as-flex-grow-1'] }}"
+					>
+						Delete
+					</twig:Ascella:Button>
+				</div>
+			</div>
+		</div>
+	{% endif %}
 </div>

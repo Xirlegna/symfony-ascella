@@ -1,19 +1,23 @@
 .as-d-flex {
-  display: flex;
+    display: flex;
 }
 
 .as-flex-direction-column {
-  flex-direction: column;
+    flex-direction: column;
 }
 
 .as-align-items-center {
-  align-items: center;
+    align-items: center;
 }
 
 .as-justify-content-center {
-  justify-content: center;
+    justify-content: center;
 }
 
 .as-justify-content-space-between {
-  justify-content: space-between;
+    justify-content: space-between;
+}
+
+.as-flex-grow-1 {
+    flex-grow: 1;
 }
