@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Ascella{% endblock %}</title>
+        <link rel="icon" href="{{ asset('ascella/images/brand-icon.svg') }}">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('ascella') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('ascella') }}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+</html>

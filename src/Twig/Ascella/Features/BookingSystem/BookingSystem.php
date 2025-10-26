@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Twig\Components\Ascella;
+namespace App\Twig\Ascella\Features\BookingSystem;
 
 use DateTime;
 use App\Entity\Appointment;
@@ -8,11 +8,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\AppointmentRepository;
 use Symfony\UX\LiveComponent\Attribute\LiveArg;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
-use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+use Symfony\UX\LiveComponent\DefaultActionTrait;
 
-#[AsLiveComponent(template: 'ascella/components/BookingSystem/BookingSystem.html.twig')]
+#[AsLiveComponent(
+    name: 'Ascella:BookingSystem',
+    template: '@Ascella/Features/BookingSystem/Templates/BookingSystem.html.twig'
+)]
 class BookingSystem
 {
     use DefaultActionTrait;

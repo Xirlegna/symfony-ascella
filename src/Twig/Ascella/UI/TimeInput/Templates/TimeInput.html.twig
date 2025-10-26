@@ -1,0 +1,39 @@
+<div {{ attributes }} class="as-d-flex">
+	<div class="as-d-flex as-flex-direction-column">
+		<button {{ live_action('onIncrementHour') }} class="{{ this.btnPlusClass }}">
+			<img src="{{ asset('ascella/images/plus.svg') }}" alt="Plus"/>
+		</button>
+		<input
+            type="number"
+            min="0"
+            max="23"
+            data-model="hour"
+            data-model-debounce="500"
+            data-action="live#action"
+            data-live-action-param="onValidateHour"
+            class="{{ this.hourInputClass }}"
+        />
+		<button {{ live_action('onDecrementHour') }} class="{{ this.btnMinusClass }}">
+			<img src="{{ asset('ascella/images/minus.svg') }}" alt="Minus"/>
+		</button>
+	</div>
+	<img src="{{ asset('ascella/images/colon.svg') }}" alt="Colon"/>
+	<div class="as-d-flex as-flex-direction-column">
+		<button {{ live_action('onIncrementMinute') }} class="{{ this.btnPlusClass }}">
+			<img src="{{ asset('ascella/images/plus.svg') }}" alt="Plus"/>
+		</button>
+		<input
+            type="number"
+            min="0"
+            max="59"
+            data-model="minute"
+            data-model-debounce="500"
+            data-action="live#action"
+            data-live-action-param="onValidateMinute"
+            class="{{ this.minuteInputClass }}"
+        />
+		<button {{ live_action('onDecrementMinute') }} class="{{ this.btnMinusClass }}">
+			<img src="{{ asset('ascella/images/minus.svg') }}" alt="Minus"/>
+		</button>
+	</div>
+</div>

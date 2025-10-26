@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Twig\Components\Ascella;
+namespace App\Twig\Ascella\UI\TextInput;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\UX\TwigComponent\Attribute\PreMount;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
+use Symfony\UX\TwigComponent\Attribute\PreMount;
 
-#[AsTwigComponent(template: 'ascella/components/TextInput.html.twig')]
+#[AsTwigComponent(
+    name: 'Ascella:TextInput',
+    template: '@Ascella/UI/TextInput/Templates/TextInput.html.twig'
+)]
 class TextInput
 {
     public string $id;
@@ -35,6 +38,6 @@ class TextInput
         $resolver->setDefaults(['model' => '']);
         $resolver->setAllowedTypes('model', 'string');
 
-        return $resolver->resolve($data) + $data;
+        return $resolver->resolve($data);
     }
 }

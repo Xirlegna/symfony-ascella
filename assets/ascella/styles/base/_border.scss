@@ -10,6 +10,14 @@
     border-color: var(--color-grey-300);
 }
 
+.as-border-error {
+    border-color: var(--color-error);
+}
+
+.as-border-error-hover {
+    border-color: var(--color-error-hover);
+}
+
 .as-border-solid {
     border-style: solid;
 }

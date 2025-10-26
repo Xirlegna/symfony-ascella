@@ -2,11 +2,11 @@
 	<div class="as-p-6 as-bg-grey-200">
 		<div class="as-d-flex as-justify-content-space-between as-align-items-center as-mb-4">
 			<button {{ live_action('prevMonth') }} type="button" class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-w-7 as-h-7 rounded-full as-border-none as-bg-ascella-blue hover:as-bg-accent-cyan">
-				<img src="{{ asset('images/arrow-left.svg') }}" alt="Left"/>
+				<img src="{{ asset('ascella/images/arrow-left.svg') }}" alt="Left"/>
 			</button>
 			<p class="as-text-primary-accent">{{ this.header }}</p>
 			<button {{ live_action('nextMonth') }} type="button" class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-w-7 as-h-7 rounded-full as-border-none as-bg-ascella-blue hover:as-bg-accent-cyan">
-				<img src="{{ asset('images/arrow-right.svg') }}" alt="Right"/>
+				<img src="{{ asset('ascella/images/arrow-right.svg') }}" alt="Right"/>
 			</button>
 		</div>
 
@@ -71,38 +71,7 @@
 			<p class="as-text-body">End: {{ this.appointment.end }}</p>
 		{% endif %}
 
-		<div class="as-d-flex">
-			<div class="as-d-flex as-flex-direction-column">
-				<button class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-bg-ascella-blue as-border-none rounded-t-sm as-w-9 as-h-7">
-					<img src="{{ asset('images/plus.svg') }}" alt="Plus"/>
-				</button>
-				<input
-					type="number"
-					min="0"
-					max="23"
-					value=00
-					class="as-outline-none as-w-9 as-h-9 rounded-none as-border-solid as-border-1 as-border-grey-300 as-text-center"
-				/>
-				<button class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-bg-ascella-blue as-border-none rounded-b-sm as-w-9 as-h-7">
-					<img src="{{ asset('images/minus.svg') }}" alt="Minus"/>
-				</button>
-			</div>
-			<div class="as-d-flex as-flex-direction-column">
-				<button class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-bg-ascella-blue as-border-none rounded-t-sm as-w-9 as-h-7">
-					<img src="{{ asset('images/plus.svg') }}" alt="Plus"/>
-				</button>
-				<input
-					type="number"
-					min="0"
-					max="23"
-					value=00
-					class="as-outline-none as-w-9 as-h-9 rounded-none as-border-solid as-border-1 as-border-grey-300 as-text-center"
-				/>
-				<button class="as-cursor-pointer as-d-flex as-align-items-center as-justify-content-center as-bg-ascella-blue as-border-none rounded-b-sm as-w-9 as-h-7">
-					<img src="{{ asset('images/minus.svg') }}" alt="Minus"/>
-				</button>
-			</div>
-		</div>
+		<twig:Ascella:TimeInput />
 	</div>
 
 	{% if deletedAppointmentId >= 0 %}
